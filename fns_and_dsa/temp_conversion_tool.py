@@ -24,9 +24,9 @@ def get_conversion_choice():
             choice = int(input("Enter your choice (1-3): "))
             if 1 <= choice <= 3:
                 return choice
-            print("Please enter a number between 1 and 3")
+            print("Invalid choice. Please enter a number between 1 and 3")
         except ValueError:
-            print("Please enter a valid number")
+            print("Invalid input. Please enter a numeric value.")
 
 def get_temperature_input():
     """Get temperature value from user"""
@@ -35,7 +35,7 @@ def get_temperature_input():
             temp = float(input("Enter the temperature to convert: "))
             return temp
         except ValueError:
-            print("Please enter a valid number")
+            print("Invalid temperature. Please enter a numeric value.")
 
 def get_temperature_scale():
     """Get temperature scale from user"""
@@ -43,7 +43,7 @@ def get_temperature_scale():
         scale = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").upper()
         if scale in ('C', 'F'):
             return scale
-        print("Please enter 'C' or 'F'")
+        print("Invalid scale. Please enter 'C' or 'F'")
 
 def main():
     while True:
