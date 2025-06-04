@@ -1,44 +1,36 @@
+shopping_list = []
+
 def display_menu():
-    """Display the shopping list manager menu."""
-    print("\nShopping List Manager")
-    print("1. Add Item")
-    print("2. Remove Item")
-    print("3. View List")
+    """Displays the shopping list manager menu"""
+    print("Shopping List Manager")
+    print("1. Add item")
+    print("2. Remove item")
+    print("3. View list")
     print("4. Exit")
 
-def main():
-    """Main function to manage the shopping list."""
-    shopping_list = []
-    while True:
-        display_menu()
-        choice = input("Enter your choice (1-4): ").strip()
-        
-        if choice == '1':
-            item = input("Enter item to add: ").strip()
-            if item:
-                shopping_list.append(item)
-                print(f"'{item}' added to the list.")
-            else:
-                print("Item cannot be empty.")
-        elif choice == '2':
-            item = input("Enter item to remove: ").strip()
-            if item in shopping_list:
-                shopping_list.remove(item)
-                print(f"'{item}' removed from the list.")
-            else:
-                print(f"'{item}' not found in the list.")
-        elif choice == '3':
-            if shopping_list:
-                print("\nCurrent Shopping List:")
-                for idx, item in enumerate(shopping_list, 1):
-                    print(f"{idx}. {item}")
-            else:
-                print("Your shopping list is empty.")
-        elif choice == '4':
-            print("Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please enter a number between 1 and 4.")
+def add_item(item):
+    """Adds an item to the shopping list"""
+    shopping_list.append(item)
+    print(f"Added '{item}' to the list")
 
+def remove_item(item):
+    """Removes an item from the shopping list"""
+    if item in shopping_list:
+        shopping_list.remove(item)
+        print(f"Removed '{item}' from the list")
+    else:
+        print(f"'{item}' not found in the list")
+
+def view_list():
+    """Displays all items in the shopping list"""
+    if not shopping_list:
+        print("Your shopping list is empty")
+    else:
+        print("Your Shopping List:")
+        for item in shopping_list:
+            print(f"- {item}")
+
+# Example usage
 if __name__ == "__main__":
-    main()
+    display_menu()
+    # Add more interactive logic here
