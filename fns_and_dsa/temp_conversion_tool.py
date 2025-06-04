@@ -12,38 +12,67 @@ def fahrenheit_to_celsius(fahrenheit):
 
 def display_menu():
     """Display temperature conversion menu"""
-    print("Temperature Conversion Tool")
-    print("1. Celsius to Fahrenheit")
-    print("2. Fahrenheit to Celsius")
+    print("\nTemperature Conversion Tool")
+    print("1. Convert Celsius to Fahrenheit")
+    print("2. Convert Fahrenheit to Celsius")
     print("3. Exit")
+
+def get_conversion_choice():
+    """Get user's conversion choice"""
+    while True:
+        try:
+            choice = int(input("Enter your choice (1-3): "))
+            if 1 <= choice <= 3:
+                return choice
+            print("Please enter a number between 1 and 3")
+        except ValueError:
+            print("Please enter a valid number")
+
+def get_temperature_input():
+    """Get temperature value from user"""
+    while True:
+        try:
+            temp = float(input("Enter the temperature to convert: "))
+            return temp
+        except ValueError:
+            print("Please enter a valid number")
+
+def get_temperature_scale():
+    """Get temperature scale from user"""
+    while True:
+        scale = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").upper()
+        if scale in ('C', 'F'):
+            return scale
+        print("Please enter 'C' or 'F'")
 
 def main():
     while True:
         display_menu()
-        choice = input("Enter your choice (1-3): ")
+        choice = get_conversion_choice()
         
-        if choice == '1':
-            try:
-                celsius = float(input("Enter temperature in Celsius: "))
-                fahrenheit = celsius_to_fahrenheit(celsius)
-                print(f"{celsius}°C = {fahrenheit:.2f}°F")
-            except ValueError:
-                print("Please enter a valid number")
+        if choice == 1:
+            temp = get_temperature_input()
+            scale = get_temperature_scale()
+            if scale == 'C':
+                result = celsius_to_fahrenheit(temp)
+                print(f"{temp}°C = {result:.2f}°F")
+            else:
+                result = fahrenheit_to_celsius(temp)
+                print(f"{temp}°F = {result:.2f}°C")
         
-        elif choice == '2':
-            try:
-                fahrenheit = float(input("Enter temperature in Fahrenheit: "))
-                celsius = fahrenheit_to_celsius(fahrenheit)
-                print(f"{fahrenheit}°F = {celsius:.2f}°C")
-            except ValueError:
-                print("Please enter a valid number")
+        elif choice == 2:
+            temp = get_temperature_input()
+            scale = get_temperature_scale()
+            if scale == 'F':
+                result = fahrenheit_to_celsius(temp)
+                print(f"{temp}°F = {result:.2f}°C")
+            else:
+                result = celsius_to_fahrenheit(temp)
+                print(f"{temp}°C = {result:.2f}°F")
         
-        elif choice == '3':
+        elif choice == 3:
             print("Goodbye!")
             break
-        
-        else:
-            print("Invalid choice. Please enter 1-3")
 
 if __name__ == "__main__":
     main()
